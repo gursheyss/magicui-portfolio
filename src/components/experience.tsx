@@ -32,7 +32,7 @@ export function Experience() {
 
   return (
     <>
-      <div className="text-2xl font-bold mb-4 tracking-tight">
+      <div className="text-2xl font-bold mb-4 tracking-tight text-primary">
         Work Experience
       </div>
       <div
@@ -43,17 +43,19 @@ export function Experience() {
           <div className="flex flex-row justify-between overflow-x-auto">
             {[...RESUME_DATA.experience].reverse().map((experience, index) => (
               <div key={index} className="flex flex-col items-center mx-2">
-                <div className="text-sm ">{experience.startDate}</div>
+                <div className="text-sm text-secondary-foreground">
+                  {experience.startDate}
+                </div>
                 <Circle ref={circleRefs[index]} />
-                <div className="mt-2 text-sm text-center space-y-1">
-                  <div className="font-semibold text-gray-700">
+                <div className="mt-2 text-sm text-center space-y-1 text-secondary-foreground">
+                  <div className="font-semibold text-primary">
                     {experience.company}
                   </div>
-                  <div className="italic text-gray-500">{experience.role}</div>
-                  <div className="text-gray-500">{experience.location}</div>
-                  <div className="max-w-xs text-gray-600">
-                    {experience.description}
+                  <div className="italic">{experience.role}</div>
+                  <div className="text-muted-foreground">
+                    {experience.location}
                   </div>
+                  <div className="max-w-xs">{experience.description}</div>
                 </div>
               </div>
             ))}

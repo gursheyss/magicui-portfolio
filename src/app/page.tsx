@@ -12,6 +12,7 @@ import { Globe, MailIcon, PhoneIcon } from "lucide-react";
 import { Experience } from "@/components/experience";
 import { ProjectCard } from "@/components/project-card";
 import { motion } from "framer-motion";
+import { ModeToggle } from "@/components/light-switch";
 
 const containerVariants = {
   hidden: {},
@@ -38,21 +39,21 @@ export default function Home() {
       >
         <motion.div
           variants={fadeInVariants}
-          className="mx-auto w-full max-w-full space-y-8 bg-white py-8 print:space-y-4"
+          className="mx-auto w-full max-w-full space-y-8 py-8 print:space-y-4"
         >
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-4 space-y-4 md:space-y-0">
             <div>
-              <div className="text-4xl font-bold tracking-tight">
+              <div className="text-4xl font-bold tracking-tight text-primary flex space-x-4">
                 {RESUME_DATA.contact.name}
               </div>
-              <div className="mt-2 text-sm text-gray-700 md:text-base max-w-md md:max-w-md">
+              <div className="mt-2 text-sm md:text-base max-w-md text-muted-foreground">
                 {RESUME_DATA.summary}
               </div>
-              <div className="flex items-center space-x-2 text-gray-500 mt-2">
+              <div className="flex items-center space-x-2 mt-2 text-muted-foreground">
                 <Globe className="inline-block h-4 w-4" />
                 <span>{RESUME_DATA.contact.location}</span>
               </div>
-              <div className="flex gap-4 justify-start text-muted-foreground print:hidden pt-4">
+              <div className="flex gap-4 justify-start print:hidden pt-4 text-muted-foreground">
                 {RESUME_DATA.contact.email && (
                   <Tooltip>
                     <TooltipTrigger>
@@ -95,6 +96,7 @@ export default function Home() {
                     </TooltipContent>
                   </Tooltip>
                 ))}
+                <ModeToggle />
               </div>
             </div>
             <div className="flex-shrink-0 hidden md:block">
