@@ -1,3 +1,5 @@
+"use client";
+
 import { RESUME_DATA } from "@/data/resume-data";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
@@ -9,12 +11,35 @@ import {
 import { Globe, MailIcon, PhoneIcon } from "lucide-react";
 import { Experience } from "@/components/experience";
 import { ProjectCard } from "@/components/project-card";
+import { motion } from "framer-motion";
+
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.5,
+    },
+  },
+};
+
+const fadeInVariants = {
+  hidden: { opacity: 0, y: -20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+};
 
 export default function Home() {
   return (
     <main className="container mx-auto p-8 min-h-screen mx-auto overflow-auto">
-      <div className="flex flex-col space-y-4">
-        <div className="mx-auto w-full max-w-full space-y-8 bg-white py-8 print:space-y-4">
+      <motion.div
+        initial="hidden"
+        animate="visible"
+        variants={containerVariants}
+        className="flex flex-col space-y-4"
+      >
+        <motion.div
+          variants={fadeInVariants}
+          className="mx-auto w-full max-w-full space-y-8 bg-white py-8 print:space-y-4"
+        >
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-4 space-y-4 md:space-y-0">
             <div>
               <div className="text-4xl font-bold tracking-tight">
@@ -82,34 +107,44 @@ export default function Home() {
               />
             </div>
           </div>
-        </div>
-      </div>
-      <div className="max-w-full mx-auto">
-        <Experience />
-      </div>
-      <section className="w-full max-w-full mx-auto py-12" id="projects">
-        <div className="space-y-6">
-          <div className="flex flex-col items-start justify-center space-y-4 text-left">
-            <div className="space-y-2">
-              <h2 className="text-2xl font-bold tracking-tight">My Projects</h2>
+        </motion.div>
+
+        <motion.div variants={fadeInVariants} className="max-w-full mx-auto">
+          <Experience />
+        </motion.div>
+
+        <motion.section
+          variants={fadeInVariants}
+          className="w-full max-w-full mx-auto py-12"
+          id="projects"
+        >
+          <div className="space-y-6">
+            <div className="flex flex-col items-start justify-center space-y-4 text-left">
+              <div className="space-y-2">
+                <h2 className="text-2xl font-bold tracking-tight">
+                  My Projects
+                </h2>
+              </div>
+            </div>
+            <div className="grid grid-cols-1 gap-3 md:grid-cols-2 mx-auto">
+              {RESUME_DATA.projects.map((project, id) => (
+                <motion.div key={project.title} variants={fadeInVariants}>
+                  <ProjectCard
+                    key={project.title}
+                    title={project.title}
+                    description={project.description}
+                    dates={project.dates}
+                    tags={project.technologies}
+                    image={project.image}
+                    video={project.video}
+                    links={project.links}
+                  />
+                </motion.div>
+              ))}
             </div>
           </div>
-          <div className="grid grid-cols-1 gap-3 md:grid-cols-2 mx-auto">
-            {RESUME_DATA.projects.map((project, id) => (
-              <ProjectCard
-                key={project.title}
-                title={project.title}
-                description={project.description}
-                dates={project.dates}
-                tags={project.technologies}
-                image={project.image}
-                video={project.video}
-                links={project.links}
-              />
-            ))}
-          </div>
-        </div>
-      </section>
+        </motion.section>
+      </motion.div>
     </main>
   );
 }
