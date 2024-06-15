@@ -14,7 +14,7 @@ export default function Home() {
   return (
     <main className="container mx-auto p-8 min-h-screen mx-auto overflow-auto">
       <div className="flex flex-col space-y-4">
-        <div className="mx-auto w-full max-w-6xl space-y-8 bg-white py-8 print:space-y-4">
+        <div className="mx-auto w-full max-w-full space-y-8 bg-white py-8 print:space-y-4">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-4 space-y-4 md:space-y-0">
             <div>
               <div className="text-4xl font-bold tracking-tight">
@@ -84,10 +84,10 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-full mx-auto">
         <Experience />
       </div>
-      <section className="w-full max-w-6xl mx-auto py-12" id="projects">
+      <section className="w-full max-w-full mx-auto py-12" id="projects">
         <div className="space-y-6">
           <div className="flex flex-col items-start justify-center space-y-4 text-left">
             <div className="space-y-2">
